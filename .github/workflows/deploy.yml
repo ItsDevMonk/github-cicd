@@ -25,19 +25,22 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout code from master branch
         uses: actions/checkout@v2
+        
+      - name: Hey
+        run: echo ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Configure AWS Credential
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.ACCESS_KEY_SECRET }}
-          aws-region: ${{ github.event.inputs.region }}
+#       # Configure AWS Credential
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+#           aws-secret-access-key: ${{ secrets.ACCESS_KEY_SECRET }}
+#           aws-region: ${{ github.event.inputs.region }}
 
-      # Deploy to AWS CloudFormation
-      - name: Deploy to AWS CloudFormation
-        uses: aws-actions/aws-cloudformation-github-deploy@v1
-        with:
-          name: test-stack
-          template: lamda_function1.json
-          capabilities: CAPABILITY_NAMED_IAM
+#       # Deploy to AWS CloudFormation
+#       - name: Deploy to AWS CloudFormation
+#         uses: aws-actions/aws-cloudformation-github-deploy@v1
+#         with:
+#           name: test-stack
+#           template: lamda_function1.json
+#           capabilities: CAPABILITY_NAMED_IAM
